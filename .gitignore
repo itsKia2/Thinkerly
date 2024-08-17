@@ -37,6 +37,7 @@ bower_components
 *.launch
 .settings/
 *.sublime-workspace
+.expo/
 
 # IDE - VSCode
 .vscode/*

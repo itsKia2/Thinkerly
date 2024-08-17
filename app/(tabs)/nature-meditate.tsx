@@ -1,13 +1,16 @@
 import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native';
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { useRouter } from 'expo-router';
 
 import AppGradient from '@/components/AppGradient';
 import { MEDITATION_DATA } from '@/constants/MeditationData';
 import MEDITATION_IMAGES from '@/constants/meditation-images';
 import { LinearGradient } from 'expo-linear-gradient';
+import CustomButton from '@/components/CustomButton';
 
 const NatureMeditate = () => {
+    const router = useRouter();
     return (
         <View className="flex-1">
             <AppGradient colors={['#161b2e', '#0a4d4a', '#766e67']}>
@@ -18,6 +21,16 @@ const NatureMeditate = () => {
                     <Text className="text-indigo-100 text-xl font-medium">
                         Start your focusing now.
                     </Text>
+                    <Text className="text-indigo-100 text-xl font-medium">
+                        Choose your background image
+                    </Text>
+
+                    <View className="px-5 py-2">
+                        <CustomButton
+                            onPress={() => router.back()}
+                            title="Index page"
+                        />
+                    </View>
                 </View>
 
                 <View>

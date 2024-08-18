@@ -32,9 +32,9 @@ const TabsLayout = () => {
             />
 
             <Tabs.Screen
-                name="affirmations"
+                name="timer"
                 options={{
-                    tabBarLabel: 'Affirmations',
+                    tabBarLabel: 'Timer',
                     tabBarIcon: ({ color }) => (
                         <Entypo name="open-book" size={24} color={color} />
                     )

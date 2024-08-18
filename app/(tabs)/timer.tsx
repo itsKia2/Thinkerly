@@ -1,23 +1,22 @@
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
-import AppGradient from '@/components/AppGradient';
 import { StatusBar } from 'expo-status-bar';
 
-/* TODO refactor into music page later thank you
- *  */
+import AppGradient from '@/components/AppGradient';
 
-const Affirmation = () => {
+const Timer = () => {
     return (
         <View className="flex-1">
             <AppGradient colors={['#2e1f58', '#54426b', '#a790af']}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <View>
                     <Text className="text-zinc-50 font-bold text-3xl">
-                        I've skipped Affirmations
+                        Timer page
                     </Text>
+
                     <Text className="text-zinc-50 font-bold text-2xl py-10">
-                        Come back to this if need be
+                        Add timer below at center of page
                     </Text>
-                </ScrollView>
+                </View>
             </AppGradient>
 
             {/* Default statusbar is hidden by background image due to flex-1 */}
@@ -26,4 +25,4 @@ const Affirmation = () => {
     );
 };
 
-export default Affirmation;
+export default Timer;

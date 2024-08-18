@@ -1,15 +1,22 @@
-import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native';
+import {
+    FlatList,
+    ImageBackground,
+    Pressable,
+    Text,
+    View,
+    StyleSheet
+} from 'react-native';
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 
 import AppGradient from '@/components/AppGradient';
-import { MEDITATION_DATA } from '@/constants/MeditationData';
-import MEDITATION_IMAGES from '@/constants/meditation-images';
+import { FOCUS_DATA } from '@/constants/FocusData';
+import IMAGES1 from '@/constants/focus-images';
 import { LinearGradient } from 'expo-linear-gradient';
 import CustomButton from '@/components/CustomButton';
 
-const NatureMeditate = () => {
+const NatureFocus = () => {
     const router = useRouter();
     return (
         <View className="flex-1">
@@ -25,6 +32,7 @@ const NatureMeditate = () => {
                         Choose your background image
                     </Text>
 
+                    {/* TODO get rid of this button we don't need to come back */}
                     <View className="px-5 py-2">
                         <CustomButton
                             onPress={() => router.back()}
@@ -35,26 +43,28 @@ const NatureMeditate = () => {
 
                 <View>
                     <FlatList
-                        data={MEDITATION_DATA}
-                        className="mb-20"
+                        data={FOCUS_DATA}
+                        contentContainerStyle={styles.list}
                         keyExtractor={(item) => item.id.toString()}
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item }) => (
                             <Pressable
                                 onPress={() => console.log('boop')}
-                                className="h-48 my-3 rounded-md overflow-hidden"
+                                className="h-36 my-3 rounded-md overflow-hidden"
                             >
                                 <ImageBackground
-                                    source={MEDITATION_IMAGES[item.id - 1]}
+                                    source={IMAGES1[item.id - 1]}
                                     resizeMode="cover"
-                                    className="flex-1 rounded-lg justify-center"
+                                    /* className="flex-1 rounded-lg justify-center" */
+                                    style={styles.backgroundImage}
                                 >
                                     <LinearGradient
                                         colors={[
                                             'transparent',
                                             'rgba(0, 0, 0, 0.8)'
                                         ]}
-                                        className="flex-1 justify-center items-center"
+                                        /* className="flex-1 justify-center items-center" */
+                                        style={styles.gradient}
                                     >
                                         <Text className="text-gray-100 text-3xl font-bold text-center">
                                             {item.title}
@@ -74,4 +84,27 @@ const NatureMeditate = () => {
     );
 };
 
-export default NatureMeditate;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    background: {
+        flex: 1
+    },
+    backgroundImage: {
+        flex: 1,
+        borderRadius: 10,
+        justifyContent: 'center'
+    },
+    gradient: {
+        alignItems: 'center',
+        height: '100%',
+        justifyContent: 'center',
+        width: '100%'
+    },
+    list: {
+        paddingBottom: 150
+    }
+});
+
+export default NatureFocus;

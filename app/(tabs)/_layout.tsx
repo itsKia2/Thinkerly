@@ -1,5 +1,3 @@
-import { Text, View } from 'react-native';
-import React from 'react';
 import { Tabs } from 'expo-router';
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 
@@ -10,13 +8,19 @@ const TabsLayout = () => {
         <Tabs
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: Colors.primary
+                tabBarActiveTintColor: Colors.primary,
+                tabBarStyle: [
+                    {
+                        position: 'absolute',
+                        display: 'flex'
+                    }
+                ]
             }}
         >
             <Tabs.Screen
-                name="nature-meditate"
+                name="nature-focus"
                 options={{
-                    tabBarLabel: 'Meditate',
+                    tabBarLabel: 'Focus',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons
                             name="flower-tulip"

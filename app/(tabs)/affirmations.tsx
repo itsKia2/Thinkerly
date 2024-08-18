@@ -1,6 +1,10 @@
 import { ScrollView, Text, View } from 'react-native';
 import React from 'react';
 import AppGradient from '@/components/AppGradient';
+import { StatusBar } from 'expo-status-bar';
+
+/* TODO refactor into music page later thank you
+ *  */
 
 const Affirmation = () => {
     return (
@@ -15,6 +19,9 @@ const Affirmation = () => {
                     </Text>
                 </ScrollView>
             </AppGradient>
+
+            {/* Default statusbar is hidden by background image due to flex-1 */}
+            <StatusBar style="light" />
         </View>
     );
 };

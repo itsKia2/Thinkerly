@@ -3,9 +3,17 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 
-import beachImage from '@/assets/meditation-images/beach.webp';
+import beachImage from '@/assets/focus-images/beach.webp';
 import CustomButton from '@/components/CustomButton';
 import AppGradient from '@/components/AppGradient';
+
+/* TODO !!!
+ * TODO Index page is simple, button to go to timer page
+ * TODO refactor assets and constants to remove meditation - replace with focus
+ * TODO Design timer page - only initial design dont do the timer
+ * TODO Button from timer page to change background image (keep images from og project)
+ * TODO include button on focus page to take you to sounds page (currently affirmations)
+ *  */
 
 const App = () => {
     const router = useRouter();
@@ -32,10 +40,10 @@ const App = () => {
                             </Text>
                         </View>
 
-                        {/* Button on main page, currently does nothing (console.log)  */}
+                        {/* Button on main page  */}
                         <View>
                             <CustomButton
-                                onPress={() => router.push('/nature-meditate')}
+                                onPress={() => router.push('/nature-focus')}
                                 title="Focus?"
                             />
                         </View>

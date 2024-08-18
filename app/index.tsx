@@ -29,23 +29,23 @@ const App = () => {
                 <AppGradient
                     colors={['rgba(0, 0, 0, 0.4)', 'rgba(0, 0, 0, 0.8)']}
                 >
-                    <SafeAreaView className="flex-1 px-1 justify-between">
+                    <SafeAreaView className="flex-1 justify-center">
                         <View>
                             {/* Title and subtitle  */}
                             <Text className="text-center text-white font-bold text-4xl">
                                 Thinkerly !
                             </Text>
-                            <Text className="text-center text-white text-2xl mt-3">
+                            <Text className="text-center text-white text-2xl mt-3 mb-3">
                                 Improving Productivity Everywhere
                             </Text>
-                        </View>
 
-                        {/* Button on main page  */}
-                        <View>
-                            <CustomButton
-                                onPress={() => router.push('/nature-focus')}
-                                title="Focus?"
-                            />
+                            {/* Button on main page  */}
+                            <View className="pt-20">
+                                <CustomButton
+                                    onPress={() => router.push('/nature-focus')}
+                                    title="Focus?"
+                                />
+                            </View>
                         </View>
 
                         {/* Makes the StatusBar at the top light mode */}

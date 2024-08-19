@@ -31,14 +31,6 @@ const NatureFocus = () => {
                     <Text className="text-indigo-100 text-xl font-medium">
                         Choose your background image
                     </Text>
-
-                    {/* TODO get rid of this button we don't need to come back */}
-                    <View className="px-5 py-2">
-                        <CustomButton
-                            onPress={() => router.back()}
-                            title="Index page"
-                        />
-                    </View>
                 </View>
 
                 <View>
@@ -49,8 +41,8 @@ const NatureFocus = () => {
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item }) => (
                             <Pressable
-                                onPress={() => console.log('boop')}
-                                className="h-36 my-3 rounded-md overflow-hidden"
+                                onPress={() => console.log(item.image)}
+                                className="h-48 my-3 rounded-md overflow-hidden"
                             >
                                 <ImageBackground
                                     source={IMAGES1[item.id - 1]}

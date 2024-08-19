@@ -1,7 +1,6 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { useRouter } from 'expo-router';
 
 import AppGradient from '@/components/AppGradient';
 import CustomTimer from '@/components/CustomTimer';
@@ -12,7 +11,6 @@ function changeSeed(seed: number) {
 }
 
 const Timer = () => {
-    const router = useRouter();
     const [seed, setSeed] = useState(1);
     let duration = 3;
     let changeSeed = () => setSeed(seed + 1);

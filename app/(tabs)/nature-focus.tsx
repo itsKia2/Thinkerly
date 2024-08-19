@@ -8,16 +8,13 @@ import {
 } from 'react-native';
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { useRouter } from 'expo-router';
 
 import AppGradient from '@/components/AppGradient';
 import { FOCUS_DATA } from '@/constants/FocusData';
 import IMAGES1 from '@/constants/focus-images';
 import { LinearGradient } from 'expo-linear-gradient';
-import CustomButton from '@/components/CustomButton';
 
 const NatureFocus = () => {
-    const router = useRouter();
     return (
         <View className="flex-1">
             <AppGradient colors={['#161b2e', '#0a4d4a', '#766e67']}>
@@ -47,7 +44,6 @@ const NatureFocus = () => {
                                 <ImageBackground
                                     source={IMAGES1[item.id - 1]}
                                     resizeMode="cover"
-                                    /* className="flex-1 rounded-lg justify-center" */
                                     style={styles.backgroundImage}
                                 >
                                     <LinearGradient
@@ -55,7 +51,6 @@ const NatureFocus = () => {
                                             'transparent',
                                             'rgba(0, 0, 0, 0.8)'
                                         ]}
-                                        /* className="flex-1 justify-center items-center" */
                                         style={styles.gradient}
                                     >
                                         <Text className="text-gray-100 text-3xl font-bold text-center">

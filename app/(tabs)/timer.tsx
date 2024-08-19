@@ -1,32 +1,35 @@
 import { Text, View, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
+import Dialog from 'react-native-dialog';
 
 import AppGradient from '@/components/AppGradient';
 import CustomTimer from '@/components/CustomTimer';
 import CustomButton from '@/components/CustomButton';
 
-function changeSeed(seed: number) {
-    return seed + 1;
-}
-
 const Timer = () => {
+    /* States used in program */
     const [seed, setSeed] = useState(1);
-    let duration = 3;
     let [startBool, setStart] = useState(false);
+    let [durationPrompt, setPrompt] = useState(false);
+    /* DEFAULT DURATION = 10 */
+    let [duration, changeDuration] = useState(10);
+
     let changeSeed = () => setSeed(seed + 1);
     let changeStart = () => setStart(!startBool);
+    let onPrompt = () => setPrompt(true);
+    let offPrompt = () => setPrompt(false);
 
     return (
         <View className="flex-1">
             <AppGradient colors={['#2e1f58', '#54426b', '#a790af']}>
                 <View>
                     <Text className="text-zinc-50 font-bold text-3xl">
-                        Timer page
+                        Timer
                     </Text>
 
                     <Text className="text-zinc-50 font-bold text-2xl py-10">
-                        Add timer below at center of page
+                        Press the Start/Stop button
                     </Text>
                 </View>
 
@@ -35,21 +38,55 @@ const Timer = () => {
                     <CustomTimer key={seed} start={startBool} time={duration} />
                 </View>
 
-                {/* Refresh and Start/Stop buttons */}
                 <View style={styles.dialogContentView}>
+                    {/* Refresh and Start/Stop buttons */}
                     <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.button_1}>
-                            <CustomButton
-                                onPress={changeSeed}
-                                title="Refresh"
-                            />
-                        </View>
                         <View style={styles.button_1}>
                             <CustomButton
                                 onPress={changeStart}
                                 title="Start/Stop"
                             />
                         </View>
+                        <View style={styles.button_1}>
+                            <CustomButton
+                                onPress={changeSeed}
+                                title="Refresh"
+                            />
+                        </View>
+                    </View>
+
+                    {/* Input duration button */}
+                    <View>
+                        <View style={styles.button_2View}>
+                            <CustomButton
+                                onPress={onPrompt}
+                                title="Duration"
+                            />
+                        </View>
+                        <Dialog.Container
+                            visible={durationPrompt}
+                            onBackdropPress={offPrompt}
+                        >
+                            <Dialog.Title>Change timer duration</Dialog.Title>
+                            <Dialog.Description>
+                                Please enter the number of seconds below
+                            </Dialog.Description>
+                            <Dialog.Input
+                                onChangeText={(text) => {
+                                    if (text === '') {
+                                        text = '0';
+                                    }
+                                    changeDuration(parseInt(text))
+                                }
+                                }
+                                value={duration.toString()}
+                                keyboardType="numeric"
+                            ></Dialog.Input>
+                            <Dialog.Button
+                                label="Continue"
+                                onPress={offPrompt}
+                            />
+                        </Dialog.Container>
                     </View>
                 </View>
             </AppGradient>
@@ -62,7 +99,7 @@ const Timer = () => {
 
 const styles = StyleSheet.create({
     dialogContentView: {
-        flex: 1,
+        flex: 0.3,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -71,6 +108,11 @@ const styles = StyleSheet.create({
     },
     button_1: {
         width: '52%',
+        padding: 9,
+        height: 27
+    },
+    button_2View: {
+        width: 300,
         padding: 9,
         height: 27
     }

@@ -1,30 +1,59 @@
-import { Text, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { View, Animated, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+import Constants from 'expo-constants';
 
-interface CustomButtonProps {
-    onPress: () => void;
-    title: string;
-    textStyles?: string;
-    containerStyles?: string;
+interface CustomTimerProps {
+    start: boolean;
+    time: number;
 }
 
-const CustomButton = ({
-    onPress,
-    title,
-    textStyles = '',
-    containerStyles = ''
-}: CustomButtonProps) => {
+const CustomTimer = ({ start, time }: CustomTimerProps) => {
+    const [count, setCount] = useState(0);
+    const animatedColor = '#ffffff';
+
     return (
-        <TouchableOpacity
-            activeOpacity={0.7}
-            className={`bg-white rounded-xl min-h-[62px] justify-center items-center ${containerStyles}`}
-            onPress={onPress}
-        >
-            <Text className={`font-semibold text-lg ${textStyles}`}>
-                {title}
-            </Text>
-        </TouchableOpacity>
+        <View style={styles.container}>
+            <CountdownCircleTimer
+                isPlaying={start}
+                duration={time}
+                colors="#004777"
+                onComplete={(duration) => {
+                    console.log('COMPLETED TIMER');
+                    /* return [true, 0]; */
+                    return {
+                        shouldRepeat: false,
+                        delay: 1
+                    };
+                }}
+            >
+                {({ remainingTime, animatedColor }) => (
+                    <Animated.Text
+                        style={{
+                            ...styles.remainingTime
+                            /* color: animatedColor */
+                        }}
+                    >
+                        {remainingTime}
+                    </Animated.Text>
+                )}
+            </CountdownCircleTimer>
+        </View>
     );
 };
 
-export default CustomButton;
+const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: Constants.statusBarHeight
+        /* backgroundColor: '#ecf0f1', */
+        /* padding: 20 */
+    },
+    remainingTime: {
+        fontSize: 46,
+        color: 'white'
+    }
+});
+
+export default CustomTimer;

@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 
@@ -35,14 +35,22 @@ const Timer = () => {
                     <CustomTimer key={seed} start={startBool} time={duration} />
                 </View>
 
-                {/* Refresh button */}
-                <View className="pt-20">
-                    <CustomButton onPress={changeSeed} title="Refresh" />
-                </View>
-
-                {/* Start/Stop button */}
-                <View className="pt-20">
-                    <CustomButton onPress={changeStart} title="Start/Stop" />
+                {/* Refresh and Start/Stop buttons */}
+                <View style={styles.dialogContentView}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.button_1}>
+                            <CustomButton
+                                onPress={changeSeed}
+                                title="Refresh"
+                            />
+                        </View>
+                        <View style={styles.button_1}>
+                            <CustomButton
+                                onPress={changeStart}
+                                title="Start/Stop"
+                            />
+                        </View>
+                    </View>
                 </View>
             </AppGradient>
 
@@ -51,5 +59,21 @@ const Timer = () => {
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    dialogContentView: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 20,
+        paddingTop: 20
+    },
+    button_1: {
+        width: '52%',
+        padding: 9,
+        height: 27
+    }
+});
 
 export default Timer;

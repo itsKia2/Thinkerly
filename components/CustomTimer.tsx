@@ -10,7 +10,6 @@ interface CustomTimerProps {
 
 const CustomTimer = ({ start, time }: CustomTimerProps) => {
     const [count, setCount] = useState(0);
-    const animatedColor = '#ffffff';
 
     return (
         <View style={styles.container}>
@@ -18,7 +17,7 @@ const CustomTimer = ({ start, time }: CustomTimerProps) => {
                 isPlaying={start}
                 duration={time}
                 colors="#004777"
-                onComplete={(duration) => {
+                onComplete={() => {
                     console.log('COMPLETED TIMER');
                     /* return [true, 0]; */
                     return {
@@ -27,7 +26,7 @@ const CustomTimer = ({ start, time }: CustomTimerProps) => {
                     };
                 }}
             >
-                {({ remainingTime, animatedColor }) => (
+                {({ remainingTime }) => (
                     <Animated.Text
                         style={{
                             ...styles.remainingTime

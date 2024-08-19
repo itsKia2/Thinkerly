@@ -13,7 +13,9 @@ function changeSeed(seed: number) {
 const Timer = () => {
     const [seed, setSeed] = useState(1);
     let duration = 3;
+    let [startBool, setStart] = useState(false);
     let changeSeed = () => setSeed(seed + 1);
+    let changeStart = () => setStart(!startBool);
 
     return (
         <View className="flex-1">
@@ -28,11 +30,19 @@ const Timer = () => {
                     </Text>
                 </View>
 
+                {/* The actual timer component */}
                 <View className="pt-20">
-                    <CustomTimer key={seed} start={true} time={duration} />
-                    <View className="pt-20">
-                        <CustomButton onPress={changeSeed} title="Refresh" />
-                    </View>
+                    <CustomTimer key={seed} start={startBool} time={duration} />
+                </View>
+
+                {/* Refresh button */}
+                <View className="pt-20">
+                    <CustomButton onPress={changeSeed} title="Refresh" />
+                </View>
+
+                {/* Start/Stop button */}
+                <View className="pt-20">
+                    <CustomButton onPress={changeStart} title="Start/Stop" />
                 </View>
             </AppGradient>
 

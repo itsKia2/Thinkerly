@@ -1,5 +1,5 @@
-import { View, Animated, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import React from 'react';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import Constants from 'expo-constants';
 
@@ -9,8 +9,6 @@ interface CustomTimerProps {
 }
 
 const CustomTimer = ({ start, time }: CustomTimerProps) => {
-    const [count, setCount] = useState(0);
-
     return (
         <View style={styles.container}>
             <CountdownCircleTimer
@@ -27,14 +25,22 @@ const CustomTimer = ({ start, time }: CustomTimerProps) => {
                 }}
             >
                 {({ remainingTime }) => (
-                    <Animated.Text
-                        style={{
-                            ...styles.remainingTime
-                            /* color: animatedColor */
-                        }}
-                    >
-                        {remainingTime}
-                    </Animated.Text>
+                    <View style={styles.remaining}>
+                        <Text
+                            numberOfLines={1}
+                            adjustsFontSizeToFit
+                            style={styles.timeLeft}
+                        >
+                            Time Left:
+                        </Text>
+                        <Text
+                            numberOfLines={1}
+                            adjustsFontSizeToFit
+                            style={styles.remainingTime}
+                        >
+                            {remainingTime}
+                        </Text>
+                    </View>
                 )}
             </CountdownCircleTimer>
         </View>
@@ -50,8 +56,19 @@ const styles = StyleSheet.create({
         /* padding: 20 */
     },
     remainingTime: {
-        fontSize: 46,
-        color: 'white'
+        color: 'white',
+        justifyContent: 'center',
+        textAlign: 'center',
+        fontSize: 30
+    },
+    timeLeft: {
+        color: 'white',
+        justifyContent: 'center',
+        textAlign: 'center',
+        fontSize: 17
+    },
+    remaining: {
+        width: '87%'
     }
 });
 

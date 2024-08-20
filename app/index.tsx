@@ -46,12 +46,12 @@ const App = () => {
                             </View>
                         </View>
 
+                        {/* Makes the StatusBar at the top light mode */}
+                        {/* Default statusbar is hidden by background image due to flex-1 */}
+                        <StatusBar style="light" />
                     </SafeAreaView>
                 </AppGradient>
             </ImageBackground>
-            {/* Makes the StatusBar at the top light mode */}
-            {/* Default statusbar is hidden by background image due to flex-1 */}
-            <StatusBar style="light" />
         </View>
     );
 };

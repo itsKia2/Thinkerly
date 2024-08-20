@@ -1,7 +1,7 @@
 import { View, Text, ImageBackground, SafeAreaView } from 'react-native';
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 import beachImage from '@/assets/focus-images/beach.webp';
 import CustomButton from '@/components/CustomButton';
@@ -9,10 +9,8 @@ import AppGradient from '@/components/AppGradient';
 
 /* TODO !!!
  * TODO Index page is simple, button to go to timer page
- * TODO refactor assets and constants to remove meditation - replace with focus
- * TODO Design timer page - only initial design dont do the timer
  * TODO Button from timer page to change background image (keep images from og project)
- * TODO include button on focus page to take you to sounds page (currently affirmations)
+ * TODO use audios to enhance experience
  *  */
 
 const App = () => {
@@ -48,12 +46,12 @@ const App = () => {
                             </View>
                         </View>
 
-                        {/* Makes the StatusBar at the top light mode */}
-                        {/* Default statusbar is hidden by background image due to flex-1 */}
-                        <StatusBar style="light" />
                     </SafeAreaView>
                 </AppGradient>
             </ImageBackground>
+            {/* Makes the StatusBar at the top light mode */}
+            {/* Default statusbar is hidden by background image due to flex-1 */}
+            <StatusBar style="light" />
         </View>
     );
 };

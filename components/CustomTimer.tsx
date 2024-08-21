@@ -1,7 +1,6 @@
 import { Text, View, StyleSheet } from 'react-native';
 import React from 'react';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
-import Constants from 'expo-constants';
 
 interface CustomTimerProps {
     start: boolean;

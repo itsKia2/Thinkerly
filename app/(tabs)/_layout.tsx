@@ -3,6 +3,10 @@ import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 
 import Colors from '@/constants/Colors';
 
+/**
+ * FIXME remove timer tab cause it doesnt look good without background
+ */
+
 const TabsLayout = () => {
     return (
         <Tabs

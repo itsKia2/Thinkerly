@@ -33,19 +33,25 @@ const Timer = () => {
                 resizeMode="cover"
                 className="flex-1"
             >
-                <View>
-                    <Text className="text-zinc-50 font-bold text-3xl">
+                <View className="mb-6">
+                    <Text className="text-zinc-50 mb-3 mt-20 font-bold text-3xl text-center">
                         Timer
                     </Text>
 
-                    <Text className="text-zinc-50 font-bold text-2xl py-10">
+                    <Text className="text-zinc-50 font-bold text-2xl py-2 text-center">
                         Press the Start/Stop button
                     </Text>
                 </View>
 
                 {/* The actual timer component */}
-                <View className="pt-20">
-                    <CustomTimer key={seed} start={startBool} time={duration} />
+                <View className="justify-center items-center mb-6">
+                    <View className="mt-4 bg-neutral-200 rounded-full w-44 h-44 justify-center items-center">
+                        <CustomTimer
+                            key={seed}
+                            start={startBool}
+                            time={duration}
+                        />
+                    </View>
                 </View>
 
                 <View style={styles.dialogContentView}>

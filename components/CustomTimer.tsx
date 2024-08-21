@@ -56,24 +56,24 @@ const CustomTimer = ({ start, time }: CustomTimerProps) => {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: Constants.statusBarHeight
+        alignItems: 'center'
+        /* paddingTop: Constants.statusBarHeight */
         /* backgroundColor: '#ecf0f1', */
         /* padding: 20 */
     },
     remainingTime: {
-        color: 'white',
         justifyContent: 'center',
         textAlign: 'center',
         fontSize: 30
     },
     timeLeft: {
-        color: 'white',
+        color: 'black',
         justifyContent: 'center',
         textAlign: 'center',
         fontSize: 17
     },
     remaining: {
+        color: 'black',
         width: '87%'
     }
 });

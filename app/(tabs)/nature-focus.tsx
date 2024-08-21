@@ -8,13 +8,15 @@ import {
 } from 'react-native';
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 
 import AppGradient from '@/components/AppGradient';
 import { FOCUS_DATA } from '@/constants/FocusData';
 import IMAGES1 from '@/constants/focus-images';
-import { LinearGradient } from 'expo-linear-gradient';
 
 const NatureFocus = () => {
+    let router = useRouter();
     return (
         <View className="flex-1">
             <AppGradient colors={['#161b2e', '#0a4d4a', '#766e67']}>
@@ -38,7 +40,9 @@ const NatureFocus = () => {
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item }) => (
                             <Pressable
-                                onPress={() => console.log(item.image)}
+                                onPress={() =>
+                                    router.push(`timer/?id=${item.id}`)
+                                }
                                 className="h-48 my-3 rounded-md overflow-hidden"
                             >
                                 <ImageBackground

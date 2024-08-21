@@ -1,11 +1,13 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import Dialog from 'react-native-dialog';
+import { router, useLocalSearchParams } from 'expo-router';
 
 import AppGradient from '@/components/AppGradient';
 import CustomTimer from '@/components/CustomTimer';
 import CustomButton from '@/components/CustomButton';
+import FOCUS_IMAGES from '@/constants/focus-images';
 
 const Timer = () => {
     /* States used in program */
@@ -15,14 +17,22 @@ const Timer = () => {
     /* DEFAULT DURATION = 10 */
     let [duration, changeDuration] = useState(10);
 
+    /* Functions to change states */
     let changeSeed = () => setSeed(seed + 1);
     let changeStart = () => setStart(!startBool);
     let onPrompt = () => setPrompt(true);
     let offPrompt = () => setPrompt(false);
 
+    /* NOTE might not actually work */
+    const { id } = useLocalSearchParams();
+
     return (
         <View className="flex-1">
-            <AppGradient colors={['#2e1f58', '#54426b', '#a790af']}>
+            <ImageBackground
+                source={FOCUS_IMAGES[Number(id) - 1]}
+                resizeMode="cover"
+                className="flex-1"
+            >
                 <View>
                     <Text className="text-zinc-50 font-bold text-3xl">
                         Timer
@@ -58,10 +68,7 @@ const Timer = () => {
                     {/* Input duration button */}
                     <View>
                         <View style={styles.button_2View}>
-                            <CustomButton
-                                onPress={onPrompt}
-                                title="Duration"
-                            />
+                            <CustomButton onPress={onPrompt} title="Duration" />
                         </View>
                         <Dialog.Container
                             visible={durationPrompt}
@@ -76,9 +83,8 @@ const Timer = () => {
                                     if (text === '') {
                                         text = '0';
                                     }
-                                    changeDuration(parseInt(text))
-                                }
-                                }
+                                    changeDuration(parseInt(text));
+                                }}
                                 value={duration.toString()}
                                 keyboardType="numeric"
                             ></Dialog.Input>
@@ -89,7 +95,7 @@ const Timer = () => {
                         </Dialog.Container>
                     </View>
                 </View>
-            </AppGradient>
+            </ImageBackground>
 
             {/* Default statusbar is hidden by background image due to flex-1 */}
             <StatusBar style="light" />

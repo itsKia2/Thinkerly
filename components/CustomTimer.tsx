@@ -9,6 +9,11 @@ interface CustomTimerProps {
 }
 
 const CustomTimer = ({ start, time }: CustomTimerProps) => {
+    const formattedTimeMinutes = (time: number) =>
+        String(Math.floor(time / 60)).padStart(2, '0');
+    const formattedTimeSeconds = (time: number) =>
+        String(time % 60).padStart(2, '0');
+
     return (
         <View style={styles.container}>
             <CountdownCircleTimer
@@ -38,7 +43,8 @@ const CustomTimer = ({ start, time }: CustomTimerProps) => {
                             adjustsFontSizeToFit
                             style={styles.remainingTime}
                         >
-                            {remainingTime}
+                            {formattedTimeMinutes(remainingTime)}:
+                            {formattedTimeSeconds(remainingTime)}
                         </Text>
                     </View>
                 )}

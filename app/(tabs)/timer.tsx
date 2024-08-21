@@ -1,5 +1,11 @@
-import { Text, View, StyleSheet, ImageBackground } from 'react-native';
-import React, { useState } from 'react';
+import {
+    Text,
+    View,
+    StyleSheet,
+    ImageBackground,
+    AppState
+} from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import Dialog from 'react-native-dialog';
 import { useLocalSearchParams } from 'expo-router';
@@ -25,6 +31,25 @@ const Timer = () => {
 
     const { id } = useLocalSearchParams();
 
+    /* Testing AppState */
+    const appState = useRef(AppState.currentState);
+    const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
+    useEffect(() => {
+        const subscription = AppState.addEventListener(
+            'change',
+            (nextAppState) => {
+                appState.current = nextAppState;
+                setAppStateVisible(appState.current);
+                setStart(false);
+                console.log('AppState', appState.current);
+            }
+        );
+        return () => {
+            subscription.remove();
+        };
+    }, []);
+
     return (
         <View className="flex-1">
             <ImageBackground
@@ -43,6 +68,9 @@ const Timer = () => {
 
                         <Text className="text-zinc-50 font-bold text-2xl py-2 text-center">
                             Press the Start/Stop button
+                        </Text>
+                        <Text className="text-zinc-50 font-bold text-xl text-center">
+                            If you close the app it will stop the timer
                         </Text>
                     </View>
 

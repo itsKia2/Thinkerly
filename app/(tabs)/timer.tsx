@@ -23,7 +23,6 @@ const Timer = () => {
     let onPrompt = () => setPrompt(true);
     let offPrompt = () => setPrompt(false);
 
-    /* NOTE might not actually work */
     const { id } = useLocalSearchParams();
 
     return (
@@ -38,7 +37,7 @@ const Timer = () => {
                     style={styles.gradient}
                 >
                     <View className="mb-6">
-                        <Text className="text-zinc-50 mb-3 mt-20 font-bold text-3xl text-center">
+                        <Text className="text-zinc-50 mb-3 mt-1 font-bold text-3xl text-center">
                             Timer
                         </Text>
 
@@ -121,16 +120,16 @@ const Timer = () => {
 
 const styles = StyleSheet.create({
     dialogContentView: {
-        flex: 0.3,
+        flex: 0.25,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: 20,
-        paddingTop: 20
+        paddingTop: 10
     },
     button_1: {
         width: '52%',
-        padding: 9,
+        padding: 1,
+        paddingHorizontal: 20,
         height: 27
     },
     gradient: {
@@ -140,8 +139,8 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     button_2View: {
-        width: 300,
-        padding: 9,
+        width: 250,
+        paddingTop: 0,
         height: 27
     }
 });

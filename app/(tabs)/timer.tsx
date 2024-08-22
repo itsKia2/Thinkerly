@@ -40,7 +40,7 @@ const Timer = () => {
     const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
     /* Audio Section */
-    const audioFileName = FOCUS_DATA[Number(id) - 1].audio;
+    const audioFileName: string = FOCUS_DATA[Number(id) - 1].audio;
     const [Loaded, SetLoaded] = React.useState(false);
     const [Loading, SetLoading] = React.useState(false);
     const audioSound = React.useRef(new Audio.Sound());

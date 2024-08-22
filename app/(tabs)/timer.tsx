@@ -18,14 +18,16 @@ import FOCUS_IMAGES from '@/constants/focus-images';
 import { FOCUS_DATA, AUDIO_FILES } from '@/constants/FocusData';
 
 const Timer = () => {
+    /* Expo-router gives id when button on focus-nature is pressed */
+    /* required for audio and background image */
+    const { id } = useLocalSearchParams();
+
     /* States used in program */
     const [seed, setSeed] = useState(1);
     let [startBool, setStart] = useState(false);
     let [durationPrompt, setPrompt] = useState(false);
     /* DEFAULT DURATION = 10 */
     let [duration, changeDuration] = useState(10);
-    const [audioSound, setSound] = useState<Audio.Sound>();
-    const [isPlayingAudio, setPlayingAudio] = useState(false);
 
     /* Functions to change states */
     let changeSeed = () => setSeed(seed + 1);
@@ -33,35 +35,89 @@ const Timer = () => {
     let onPrompt = () => setPrompt(true);
     let offPrompt = () => setPrompt(false);
 
-    /* Expo-router gives id when button on focus-nature is pressed */
-    const { id } = useLocalSearchParams();
-
     /* AppState - stop timer when app is closed */
     const appState = useRef(AppState.currentState);
     const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
-    /* Handle playing of music */
-    const initializeSound = async () => {
-        const audioFileName = FOCUS_DATA[Number(id) - 1].audio;
-        const { sound } = await Audio.Sound.createAsync(
-            AUDIO_FILES[audioFileName]
-        );
-        setSound(sound);
-        return sound;
-    };
-
-    const togglePlayPause = async () => {
-        const sound = audioSound ? audioSound : await initializeSound();
-        const status = await sound?.getStatusAsync();
-        if (status?.isLoaded && !isPlayingAudio) {
-            await sound?.playAsync();
-            setPlayingAudio(true);
+    /* Audio Section */
+    const audioFileName = FOCUS_DATA[Number(id) - 1].audio;
+    const [Loaded, SetLoaded] = React.useState(false);
+    const [Loading, SetLoading] = React.useState(false);
+    const audioSound = React.useRef(new Audio.Sound());
+    let playing = false;
+    const togglePlay = () => {
+        if (playing) {
+            PauseAudio();
+            playing = false;
         } else {
-            await sound?.pauseAsync();
-            setPlayingAudio(false);
+            PlayAudio();
+            playing = true;
         }
     };
 
+    /* Loads the audio when screen loads */
+    useEffect(() => {
+        LoadAudio();
+
+        /* When you close this timer screen the audio dumps */
+        return () => {
+            togglePlay();
+            audioSound.current.unloadAsync();
+        };
+    }, []);
+
+    /* Load the audio for the correlated image into cache */
+    const LoadAudio = async () => {
+        SetLoading(true);
+        const checkLoading = await audioSound.current.getStatusAsync();
+        if (checkLoading.isLoaded === false) {
+            try {
+                const result = await audioSound.current.loadAsync(
+                    AUDIO_FILES[audioFileName],
+                    {},
+                    true
+                );
+                if (result.isLoaded === false) {
+                    SetLoading(false);
+                    console.log('Error in Loading Audio');
+                } else {
+                    SetLoading(false);
+                    SetLoaded(true);
+                }
+            } catch (error) {
+                console.log(error);
+                SetLoading(false);
+            }
+        } else {
+            SetLoading(false);
+        }
+    };
+
+    /* play the audio */
+    const PlayAudio = async () => {
+        try {
+            const result = await audioSound.current.getStatusAsync();
+            if (result.isLoaded) {
+                if (result.isPlaying === false) {
+                    audioSound.current.playAsync();
+                }
+            }
+        } catch (error) {}
+    };
+
+    /* pause the audio */
+    const PauseAudio = async () => {
+        try {
+            const result = await audioSound.current.getStatusAsync();
+            if (result.isLoaded) {
+                if (result.isPlaying === true) {
+                    audioSound.current.pauseAsync();
+                }
+            }
+        } catch (error) {}
+    };
+
+    /* event listener to pause music/timer when app is closed */
     useEffect(() => {
         const subscription = AppState.addEventListener(
             'change',
@@ -167,7 +223,7 @@ const Timer = () => {
                         <View>
                             <View style={styles.button_2View}>
                                 <CustomButton
-                                    onPress={togglePlayPause}
+                                    onPress={togglePlay}
                                     title="Start/Stop Audio"
                                 />
                             </View>

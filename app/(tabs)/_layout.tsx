@@ -13,6 +13,7 @@ const TabsLayout = () => {
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: Colors.primary,
+                unmountOnBlur: true,
                 tabBarStyle: [
                     {
                         position: 'absolute',
@@ -39,6 +40,7 @@ const TabsLayout = () => {
                 name="timer"
                 options={{
                     tabBarLabel: 'Timer',
+                    unmountOnBlur: true,
                     tabBarIcon: ({ color }) => (
                         <Entypo name="open-book" size={24} color={color} />
                     )

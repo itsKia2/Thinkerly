@@ -10,10 +10,12 @@ import { StatusBar } from 'expo-status-bar';
 import Dialog from 'react-native-dialog';
 import { useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Audio } from 'expo-av';
 
 import CustomTimer from '@/components/CustomTimer';
 import CustomButton from '@/components/CustomButton';
 import FOCUS_IMAGES from '@/constants/focus-images';
+import { FOCUS_DATA, AUDIO_FILES } from '@/constants/FocusData';
 
 const Timer = () => {
     /* States used in program */
@@ -22,6 +24,8 @@ const Timer = () => {
     let [durationPrompt, setPrompt] = useState(false);
     /* DEFAULT DURATION = 10 */
     let [duration, changeDuration] = useState(10);
+    const [audioSound, setSound] = useState<Audio.Sound>();
+    const [isPlayingAudio, setPlayingAudio] = useState(false);
 
     /* Functions to change states */
     let changeSeed = () => setSeed(seed + 1);
@@ -29,11 +33,34 @@ const Timer = () => {
     let onPrompt = () => setPrompt(true);
     let offPrompt = () => setPrompt(false);
 
+    /* Expo-router gives id when button on focus-nature is pressed */
     const { id } = useLocalSearchParams();
 
-    /* Testing AppState */
+    /* AppState - stop timer when app is closed */
     const appState = useRef(AppState.currentState);
     const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
+    /* Handle playing of music */
+    const initializeSound = async () => {
+        const audioFileName = FOCUS_DATA[Number(id) - 1].audio;
+        const { sound } = await Audio.Sound.createAsync(
+            AUDIO_FILES[audioFileName]
+        );
+        setSound(sound);
+        return sound;
+    };
+
+    const togglePlayPause = async () => {
+        const sound = audioSound ? audioSound : await initializeSound();
+        const status = await sound?.getStatusAsync();
+        if (status?.isLoaded && !isPlayingAudio) {
+            await sound?.playAsync();
+            setPlayingAudio(true);
+        } else {
+            await sound?.pauseAsync();
+            setPlayingAudio(false);
+        }
+    };
 
     useEffect(() => {
         const subscription = AppState.addEventListener(
@@ -107,7 +134,7 @@ const Timer = () => {
                             <View style={styles.button_2View}>
                                 <CustomButton
                                     onPress={onPrompt}
-                                    title="Duration"
+                                    title="Change Duration"
                                 />
                             </View>
                             <Dialog.Container
@@ -136,6 +163,15 @@ const Timer = () => {
                                 />
                             </Dialog.Container>
                         </View>
+
+                        <View>
+                            <View style={styles.button_2View}>
+                                <CustomButton
+                                    onPress={togglePlayPause}
+                                    title="Start/Stop Audio"
+                                />
+                            </View>
+                        </View>
                     </View>
                 </LinearGradient>
             </ImageBackground>
@@ -156,7 +192,7 @@ const styles = StyleSheet.create({
     },
     button_1: {
         width: '52%',
-        padding: 1,
+        paddingBottom: 50,
         paddingHorizontal: 20,
         height: 27
     },
@@ -168,7 +204,7 @@ const styles = StyleSheet.create({
     },
     button_2View: {
         width: 250,
-        paddingTop: 0,
+        padding: 40,
         height: 27
     }
 });

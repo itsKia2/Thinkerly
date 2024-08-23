@@ -4,16 +4,43 @@ This application focuses on improving productivity using timers to keep exclusiv
 
 ## Installation and running the application
 
-1. Install dependencies
+1. Clone the repository
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    git clone https://github.com/itsKia2/Thinkerly.git
+    cd Thinkerly
+    ```
 
-2. Start the app
+2. Install dependencies
 
-   ```bash
-    npx expo start
-   ```
+    ```bash
+    npm install
+    ```
+
+Also make sure that Android Emulator (Android Studio/SDK) OR XCode (iOS) to run this application on your computer.
+
+3. Start the app
+
+    ```bash
+     npx expo start
+    ```
 
 Choose from the options (Android/iOS/ExpoGo) to open the desired platform and running the application.
+
+## Compiling into .apk
+
+1. Ensure dependancies are installed
+
+> eas-cli
+> expo-client-dev
+
+Now run the following commands
+
+```bash
+npx eas-cli build --profile production --platform {platform}
+```
+
+This command will ask you to log into your Expo account.
+You can add the `--local` flag to compile the .apk on your own computer, otherwise it will compile on [expo.dev](expo.dev).
+
+The resulting .apk will be in your current directory.

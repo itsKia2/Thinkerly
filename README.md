@@ -40,7 +40,9 @@ Now run the following commands
 npx eas-cli build --profile production --platform {platform}
 ```
 
-This command will ask you to log into your Expo account.
-You can add the `--local` flag to compile the .apk on your own computer, otherwise it will compile on [expo.dev](expo.dev).
+Replace `{platform}` with either 'android' or 'ios'.
 
+Optionally, use the `--local` flag to compile the .apk on your own device instead of [expo.dev](expo.dev) servers.
+
+This command will ask you to log into your Expo account.
 The resulting .apk will be in your current directory.

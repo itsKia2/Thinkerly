@@ -1,35 +1,42 @@
 {
-    "expo": {
-        "name": "thinkerly",
-        "slug": "thinkerly",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./assets/images/logo.png",
-        "scheme": "myapp",
-        "userInterfaceStyle": "automatic",
-        "splash": {
-            "image": "./assets/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "ios": {
-            "supportsTablet": true
-        },
-        "android": {
-            "package": "com.itskia2.thinkerly"
-            //     "adaptiveIcon": {
-            //         "foregroundImage": "./assets/images/adaptive-icon.png",
-            //         "backgroundColor": "#ffffff"
-            //     }
-        },
-        "web": {
-            "bundler": "metro",
-            "output": "static",
-            "favicon": "./assets/images/logo.png"
-        },
-        "plugins": ["expo-router"],
-        "experiments": {
-            "typedRoutes": true
-        }
+  "expo": {
+    "name": "Thinkerly",
+    "slug": "Thinkerly",
+    "version": "0.6.1",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.itskia2.thinkerly"
+    },
+    "android": {
+      "package": "com.itskia2.Thinkerly"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/logo.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4728ae3c-75fa-4482-9e83-ba8a00246198"
+      }
     }
+  }
 }

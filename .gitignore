@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /android
+*.apk
 
 # Runtime data
 pids

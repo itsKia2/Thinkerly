@@ -32,6 +32,7 @@ Choose from the options (Android/iOS/ExpoGo) to open the desired platform and ru
 1. Ensure dependancies are installed
 
 > eas-cli
+
 > expo-client-dev
 
 Now run the following commands

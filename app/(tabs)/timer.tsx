@@ -240,16 +240,16 @@ const Timer = () => {
 
 const styles = StyleSheet.create({
     dialogContentView: {
-        flex: 0.25,
+        flex: 0.6,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: 10
+        paddingTop: 1
     },
     button_1: {
         width: '52%',
-        paddingBottom: 50,
-        paddingHorizontal: 20,
+        paddingBottom: '7%',
+        paddingHorizontal: 18,
         height: 27
     },
     gradient: {
@@ -260,7 +260,8 @@ const styles = StyleSheet.create({
     },
     button_2View: {
         width: 250,
-        padding: 40,
+        paddingVertical: '8%',
+        marginBottom: '7%',
         height: 27
     }
 });

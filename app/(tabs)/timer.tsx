@@ -163,7 +163,7 @@ const Timer = () => {
                             <CustomTimer
                                 key={seed}
                                 start={startBool}
-                                time={duration}
+                                time={duration * 60}
                             />
                         </View>
                     </View>
@@ -209,7 +209,7 @@ const Timer = () => {
                                         if (text === '') {
                                             text = '0';
                                         }
-                                        changeDuration(parseInt(text) * 60);
+                                        changeDuration(parseInt(text));
                                     }}
                                     value={duration.toString()}
                                     keyboardType="numeric"

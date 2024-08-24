@@ -134,7 +134,7 @@ const Timer = () => {
     }, []);
 
     return (
-        <View className="flex-1">
+        <View className="flex-1 pb-8">
             <ImageBackground
                 source={FOCUS_IMAGES[Number(id) - 1]}
                 resizeMode="cover"
@@ -197,18 +197,19 @@ const Timer = () => {
                                 visible={durationPrompt}
                                 onBackdropPress={offPrompt}
                             >
-                                <Dialog.Title>
+                                <Dialog.Title style={{ color: 'black' }}>
                                     Change timer duration
                                 </Dialog.Title>
-                                <Dialog.Description>
-                                    Please enter the number of seconds below
+                                <Dialog.Description style={{ color: 'black' }}>
+                                    Please enter the number of minutes below
                                 </Dialog.Description>
                                 <Dialog.Input
+                                    style={styles.durationInput}
                                     onChangeText={(text) => {
                                         if (text === '') {
                                             text = '0';
                                         }
-                                        changeDuration(parseInt(text));
+                                        changeDuration(parseInt(text) * 60);
                                     }}
                                     value={duration.toString()}
                                     keyboardType="numeric"
@@ -220,13 +221,11 @@ const Timer = () => {
                             </Dialog.Container>
                         </View>
 
-                        <View>
-                            <View style={styles.button_2View}>
-                                <CustomButton
-                                    onPress={togglePlay}
-                                    title="Start/Stop Audio"
-                                />
-                            </View>
+                        <View style={styles.button_3View}>
+                            <CustomButton
+                                onPress={togglePlay}
+                                title="Start/Stop Audio"
+                            />
                         </View>
                     </View>
                 </LinearGradient>
@@ -263,6 +262,13 @@ const styles = StyleSheet.create({
         paddingVertical: '8%',
         marginBottom: '7%',
         height: 27
+    },
+    button_3View: {
+        width: 250,
+        height: 27
+    },
+    durationInput: {
+        color: 'black'
     }
 });
 

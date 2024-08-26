@@ -7,12 +7,6 @@ import beachImage from '@/assets/focus-images/beach.webp';
 import CustomButton from '@/components/CustomButton';
 import AppGradient from '@/components/AppGradient';
 
-/* TODO !!!
- * TODO Index page is simple, button to go to timer page
- * TODO Button from timer page to change background image (keep images from og project)
- * TODO use audios to enhance experience
- *  */
-
 const App = () => {
     const router = useRouter();
     return (

@@ -3,10 +3,6 @@ import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 
 import Colors from '@/constants/Colors';
 
-/**
- * FIXME remove timer tab cause it doesnt look good without background
- */
-
 const TabsLayout = () => {
     return (
         <Tabs
@@ -36,7 +32,7 @@ const TabsLayout = () => {
                 }}
             />
 
-            <Tabs.Screen
+            {/* <Tabs.Screen
                 name="timer"
                 options={{
                     tabBarLabel: 'Timer',
@@ -45,7 +41,7 @@ const TabsLayout = () => {
                         <Entypo name="open-book" size={24} color={color} />
                     )
                 }}
-            />
+            /> */}
         </Tabs>
     );
 };

@@ -45,6 +45,7 @@ const Timer = () => {
     const [Loading, SetLoading] = React.useState(false);
     const audioSound = React.useRef(new Audio.Sound());
     let playing = false;
+
     const togglePlay = () => {
         if (playing) {
             PauseAudio();

@@ -32,16 +32,16 @@ const TabsLayout = () => {
                 }}
             />
 
-            {/* <Tabs.Screen
-                name="timer"
+            <Tabs.Screen
+                name="history"
                 options={{
-                    tabBarLabel: 'Timer',
+                    tabBarLabel: 'History',
                     unmountOnBlur: true,
                     tabBarIcon: ({ color }) => (
                         <Entypo name="open-book" size={24} color={color} />
                     )
                 }}
-            /> */}
+            />
         </Tabs>
     );
 };

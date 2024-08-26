@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface CustomTimerProps {
     start: boolean;
@@ -8,10 +9,24 @@ interface CustomTimerProps {
 }
 
 const CustomTimer = ({ start, time }: CustomTimerProps) => {
+    const initialTime = time;
+    console.log('initialTime: ' + initialTime);
     const formattedTimeMinutes = (time: number) =>
         String(Math.floor(time / 60)).padStart(2, '0');
     const formattedTimeSeconds = (time: number) =>
         String(time % 60).padStart(2, '0');
+
+    // Function to store data in AsyncStorage
+    const [inputText, setInputText] = useState<string>('');
+
+    const storeData = async () => {
+        try {
+            await AsyncStorage.setItem('@storage_Key', initialTime.toString());
+            console.log('Data successfully saved');
+        } catch (e) {
+            console.error('Failed to save the data to the storage');
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -21,6 +36,7 @@ const CustomTimer = ({ start, time }: CustomTimerProps) => {
                 colors="#004777"
                 onComplete={() => {
                     console.log('COMPLETED TIMER');
+                    storeData();
                     /* return [true, 0]; */
                     return {
                         shouldRepeat: false,

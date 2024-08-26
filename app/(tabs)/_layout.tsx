@@ -9,7 +9,6 @@ const TabsLayout = () => {
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: Colors.primary,
-                unmountOnBlur: true,
                 tabBarStyle: [
                     {
                         position: 'absolute',
@@ -36,10 +35,16 @@ const TabsLayout = () => {
                 name="history"
                 options={{
                     tabBarLabel: 'History',
-                    unmountOnBlur: true,
                     tabBarIcon: ({ color }) => (
                         <Entypo name="open-book" size={24} color={color} />
                     )
+                }}
+            />
+
+            <Tabs.Screen
+                name="timer"
+                options={{
+                    href: null
                 }}
             />
         </Tabs>

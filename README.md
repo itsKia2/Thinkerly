@@ -22,7 +22,7 @@ Also make sure that Android Emulator (Android Studio/SDK) OR XCode (iOS) to run 
 3. Start the app
 
     ```bash
-     npx expo start
+     npx expo start --go
     ```
 
 Choose from the options (Android/iOS/ExpoGo) to open the desired platform and running the application.
@@ -38,7 +38,7 @@ Choose from the options (Android/iOS/ExpoGo) to open the desired platform and ru
 Now run the following commands
 
 ```bash
-npx eas-cli build --profile production --platform {platform} --go
+npx eas-cli build --profile production --platform {platform}
 ```
 
 Replace `{platform}` with either 'android' or 'ios'.

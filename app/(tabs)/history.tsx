@@ -1,7 +1,7 @@
 import { Button, Text, View, StyleSheet } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import AppGradient from '@/components/AppGradient';
-
+import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TimerHistory = () => {
@@ -36,6 +36,8 @@ const TimerHistory = () => {
                     )}
                 </View>
             </AppGradient>
+            {/* Default statusbar is hidden by background image due to flex-1 */}
+            <StatusBar style="light" />
         </View>
     );
 };

@@ -6,28 +6,36 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 interface CustomTimerProps {
     start: boolean;
     time: number;
-
-    /* TODO add date, time, timer name (with default) in customtimerprops */
-    // FIXME add same arguments to timer.tsx
+    timerName: string;
 }
 
-const CustomTimer = ({ start, time }: CustomTimerProps) => {
+const CustomTimer = ({ start, time, timerName }: CustomTimerProps) => {
     const initialTime = time;
 
     /* Changing format from seconds to Min:Sec */
-    console.log('initialTime: ' + initialTime);
     const formattedTimeMinutes = (time: number) =>
         String(Math.floor(time / 60)).padStart(2, '0');
     const formattedTimeSeconds = (time: number) =>
         String(time % 60).padStart(2, '0');
 
     // Function to store data in AsyncStorage
-
-    // FIXME add arguments to this function
-    // FIXME add new keys here and history.tsx
     const storeData = async () => {
+        const currDate = new Date();
+        const formattedDate =
+            currDate.getMonth() +
+            '/' +
+            currDate.getDate() +
+            '/' +
+            currDate.getFullYear();
+        const stringToSave =
+            '(' +
+            formattedDate +
+            ') ' +
+            timerName +
+            ': ' +
+            initialTime.toString();
         try {
-            await AsyncStorage.setItem('@storage_Key', initialTime.toString());
+            await AsyncStorage.setItem('@storage_Key', stringToSave);
             console.log('Data successfully saved');
         } catch (e) {
             console.error('Failed to save the data to the storage');

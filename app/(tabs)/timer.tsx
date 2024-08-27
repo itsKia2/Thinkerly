@@ -3,7 +3,8 @@ import {
     View,
     StyleSheet,
     ImageBackground,
-    AppState
+    AppState,
+    TextInput
 } from 'react-native';
 import React, { useState, useRef, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
@@ -26,6 +27,7 @@ const Timer = () => {
     const [seed, setSeed] = useState(1);
     let [startBool, setStart] = useState(false);
     let [durationPrompt, setPrompt] = useState(false);
+    let [timerName, setTName] = useState('Study');
     /* DEFAULT DURATION = 10 */
     let [duration, changeDuration] = useState(10);
 
@@ -147,7 +149,18 @@ const Timer = () => {
                 >
                     <View className="mb-6">
                         <Text className="text-zinc-50 mb-3 mt-1 font-bold text-3xl text-center">
-                            Timer
+                            Timer:{' '}
+                            <TextInput
+                                style={{
+                                    width: 40,
+                                    height: 20,
+                                    textDecorationLine: 'underline'
+                                }}
+                                onChangeText={(text) => setTName(text)}
+                                editable
+                            >
+                                {timerName}
+                            </TextInput>
                         </Text>
 
                         <Text className="text-zinc-50 font-bold text-2xl py-2 text-center">
@@ -165,6 +178,7 @@ const Timer = () => {
                                 key={seed}
                                 start={startBool}
                                 time={duration * 60}
+                                timerName={timerName}
                             />
                         </View>
                     </View>

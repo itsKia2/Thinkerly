@@ -142,7 +142,7 @@ const Timer = () => {
                 className="flex-1"
             >
                 <LinearGradient
-                    colors={['transparent', 'rgba(0, 0, 0, 0.8)']}
+                    colors={['transparent', 'rgba(0, 0, 0, 0.99)']}
                     style={styles.gradient}
                 >
                     <View className="mb-6">

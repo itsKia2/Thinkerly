@@ -1,5 +1,6 @@
-import { Button, Text, TextInput, View, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet } from 'react-native';
 import React, { useState, useEffect } from 'react';
+import AppGradient from '@/components/AppGradient';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -24,11 +25,17 @@ const TimerHistory = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
-            <Button title="Load from Storage" onPress={getData} />
-            {storedText && (
-                <Text style={styles.storedText}>Stored Text: {storedText}</Text>
-            )}
+        <View className="flex-1 pb-8">
+            <AppGradient colors={['#161b2e', '#0a4d4a', '#766e67']}>
+                <View style={styles.container}>
+                    <Button title="Load from Storage" onPress={getData} />
+                    {storedText && (
+                        <Text style={styles.storedText}>
+                            Stored Text: {storedText}
+                        </Text>
+                    )}
+                </View>
+            </AppGradient>
         </View>
     );
 };
@@ -49,7 +56,7 @@ const styles = StyleSheet.create({
     storedText: {
         marginTop: 20,
         fontSize: 18,
-        color: 'blue'
+        color: 'white'
     }
 });
 

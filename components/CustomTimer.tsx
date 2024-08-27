@@ -1,15 +1,20 @@
 import { Text, View, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface CustomTimerProps {
     start: boolean;
     time: number;
+
+    /* TODO add date, time, timer name (with default) in customtimerprops */
+    // FIXME add same arguments to timer.tsx
 }
 
 const CustomTimer = ({ start, time }: CustomTimerProps) => {
     const initialTime = time;
+
+    /* Changing format from seconds to Min:Sec */
     console.log('initialTime: ' + initialTime);
     const formattedTimeMinutes = (time: number) =>
         String(Math.floor(time / 60)).padStart(2, '0');
@@ -17,8 +22,9 @@ const CustomTimer = ({ start, time }: CustomTimerProps) => {
         String(time % 60).padStart(2, '0');
 
     // Function to store data in AsyncStorage
-    const [inputText, setInputText] = useState<string>('');
 
+    // FIXME add arguments to this function
+    // FIXME add new keys here and history.tsx
     const storeData = async () => {
         try {
             await AsyncStorage.setItem('@storage_Key', initialTime.toString());

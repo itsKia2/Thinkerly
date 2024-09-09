@@ -2,21 +2,13 @@ import { Button, Text, View, StyleSheet } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import AppGradient from '@/components/AppGradient';
 import { StatusBar } from 'expo-status-bar';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TimerHistory = () => {
     const [storedText, setStoredText] = useState<string | null>(null);
 
-    // Function to retrieve data from AsyncStorage
+    // empty function rn
     const getData = async () => {
-        try {
-            const value = await AsyncStorage.getItem('@storage_Key');
-            if (value !== null) {
-                setStoredText(value);
-            }
-        } catch (e) {
-            console.error('Failed to fetch the data from storage');
-        }
+        return () => console.log();
     };
 
     // Fetch the data once when the app is loaded

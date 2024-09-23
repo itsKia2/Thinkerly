@@ -2,6 +2,8 @@
 
 This application focuses on improving productivity using timers to keep exclusive times for focusing on a single task.
 
+https://github.com/user-attachments/assets/20b09d08-84c4-4a4a-9c73-d513490f799a
+
 ## Installation and running the application
 
 1. Clone the repository

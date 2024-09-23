@@ -1,4 +1,4 @@
-# Thinkerly - A Focus App 👋
+# Thinkerly - Productivity Enhancement Mobile Application
 
 This application focuses on improving productivity using timers to keep exclusive times for focusing on a single task.
 
